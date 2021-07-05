@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300&display=swap');
+
+:root {
+	--color1: rgba(31, 5, 126, 0.87);
+	--color2 : rgba(0, 0, 0, 0.89);
+}
+
+#main {
+	display: flex;
+	flex-direction: column;
+	box-sizing: border-box;
+	width:100vw;
+	height: 100vh;
+	background:repeating-linear-gradient(-45deg, var(--color2), var(--color2) 40px, var(--color1) 20px, var(--color1) 80px);
+	margin:0;
+}
+
+#welcome {
+	display:flex;
+	align-items: center;
+	justify-content: center;
+	margin:0;
+	height:150px;
+	width:100%;
+}
+
+#welcome h1 {
+	font-size:1.6rem;
+	font-family: monospace, sans-serif;
+	color: rgb(255, 255, 255);
+}
+
+#container {
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	height:100%;
+	width: 100%;
+}
+
+#calculator {
+	background-color: rgb(221, 221, 221);
+	display:flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	font-family: 'Chakra Petch', sans-serif;
+	border-radius: 1%;
+	border: 5px solid rgb(0,0,0);
+}
+
+#expression {
+	min-height:50px;
+	width:430px;
+	margin:10px;
+	padding: 20px;
+	font-size: 30px;
+	background-color: rgb(255, 255, 255);
+	border-radius: 1%;
+	border: 2px solid rgb(0, 0, 0);
+}
+
+#expression p {
+	width:100%;
+	text-align: right;
+	word-wrap: break-word;
+	margin:0;
+	padding:0;
+}
+
+#calc-grid {
+	display:grid;
+	margin:10px;
+	padding:10px;
+	grid-template-columns: repeat(4, auto);
+	grid-template-rows: repeat(4, auto);
+	grid-gap:10px;
+}
+
+.calc-button {
+	width:100px;
+	height:90px;
+	background-color: rgb(255, 255, 255);
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.9rem;
+	border-radius: 5%;
+	border-width:3px;
+}
+.sign-button {
+	background-color: rgb(255, 187, 60);
+}
