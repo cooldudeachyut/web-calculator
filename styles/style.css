@@ -60,12 +60,30 @@
 	border: 2px solid rgb(0, 0, 0);
 }
 
-#expression p {
+#inside-exp {
 	width:100%;
 	text-align: right;
 	word-wrap: break-word;
 	margin:0;
 	padding:0;
+}
+
+#erase-container {
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width:65%;
+	height:40px;
+	margin:0;
+}
+
+.erase-button{
+	border-width:3px;
+	background-color: rgb(194, 29, 29);
+	height: 100%;
+	width: 150px;
+	font-size:1.3rem;
 }
 
 #calc-grid {

@@ -1,16 +1,24 @@
 let grid = document.getElementById("calc-grid");
-let expression = document.getElementById("expression");
+let expression = document.getElementById("inside-exp");
 
 function isInteger(value) {
 	return /^\d+$/.test(value);
 }
 
-function input(inputChar) {
+function inputExpression(event) {
+	const inputChar = event.target.innerText;
 
+	if (expression.innerHTML == "0")
+	{
+		if (isInteger(inputChar))
+			expression.innerHTML = inputChar;
+	}
+
+	else
+		expression.innerHTML = expression.innerHTML + ` ${inputChar}`;
 }
 
-function evaluate()
-{
+function evaluate() {
 
 }
 
@@ -24,7 +32,7 @@ for (let i = 0; i < 16; i++)
 	button.innerHTML = buttons[i];
 	if (buttons[i] != '=')
 	{
-		button.addEventListener("click", input(buttons[i]));
+		button.addEventListener("click", inputExpression);
 
 		if (!isInteger(buttons[i]) && buttons[i] != ".")
 			button.classList.add("sign-button");
