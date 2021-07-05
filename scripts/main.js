@@ -1,21 +1,79 @@
 let grid = document.getElementById("calc-grid");
 let expression = document.getElementById("inside-exp");
+let decimalFlag = 0;
+
+function isSign(value) {
+	return (value == '+' || value == 'x' || value == '-' || value == '÷');
+}
 
 function isInteger(value) {
 	return /^\d+$/.test(value);
 }
 
 function inputExpression(event) {
-	const inputChar = event.target.innerText;
-
-	if (expression.innerHTML == "0")
+	const inputChar = event.target.innerHTML;
+	const exp = expression.innerHTML;
+	const lastChar = exp[exp.length - 1];
+	if (exp == "0")
 	{
 		if (isInteger(inputChar))
 			expression.innerHTML = inputChar;
+
+		else if (inputChar == '.')
+			expression.innerHTML = "0.";
 	}
 
+	else if (exp.length <= 256)
+	{
+		if (isSign(lastChar))
+		{
+			if (isInteger(inputChar))
+				expression.innerHTML += ` ${inputChar}`;
+		}
+
+		else
+		{
+			if (isInteger(inputChar))
+				expression.innerHTML += inputChar;
+			
+			else if (inputChar == '.')
+			{
+				if (decimalFlag == 0)
+				{
+					decimalFlag = 1;
+					expression.innerHTML += inputChar;
+				}
+			}
+			
+			else
+			{
+				expression.innerHTML += ` ${inputChar}`;
+				decimalFlag = 0;
+			}
+		}
+	}
+}
+
+function deleteSingleChar() {
+	const exp = expression.innerHTML;
+
+	if (exp.length === 1)
+		expression.innerHTML = "0";
+	
 	else
-		expression.innerHTML = expression.innerHTML + ` ${inputChar}`;
+	{
+		const lastChar = exp[exp.length - 1];
+		const secondLastChar = exp[exp.length - 2];
+
+		if (secondLastChar == ' ')
+			expression.innerHTML = exp.substr(0, exp.length - 2);
+			
+		else
+			expression.innerHTML = exp.substr(0, exp.length - 1);
+
+		if (lastChar == '.')
+			decimalFlag = 0;
+	}
 }
 
 function evaluate() {
@@ -46,3 +104,6 @@ for (let i = 0; i < 16; i++)
 
 	grid.appendChild(button);
 }
+
+document.getElementById("clear").addEventListener("click", () => expression.innerHTML = "0");
+document.getElementById("delete").addEventListener("click", deleteSingleChar);
